@@ -1,9 +1,9 @@
 # Can K-Means be Faster? Evaluation, Analysis, and Optimization
 
-##Introduction
+## Introduction
 
-##Goals
+## Goals
 
-##Datasets
+## Datasets
 
-##Experiments
+## Experiments
