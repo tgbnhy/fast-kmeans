@@ -1,4 +1,4 @@
-# Can K-Means be Faster? Evaluation, Analysis, and Optimization
+# Can K-Means be Faster? Evaluation and Optimization
 
 ## Introduction
 
