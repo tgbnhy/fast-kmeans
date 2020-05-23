@@ -1,5 +1,4 @@
-# Can K-Means be Faster? Evaluation, Optimization, and Algorithm Selection
-
+# Evaluation of Fast k-means
 
 ## Introduction
 This repo holds the source code and scripts for reproduce the key experiments of fast k-means evaluation.
