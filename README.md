@@ -6,7 +6,7 @@ This repo holds the source code and scripts for reproduce the key experiments of
 ## Usage
 
 
-1. If you run in Eclipse, just go to "au.edu.rmit.trajectory.expriments.kmeansEfficiency", and click the "run configuration", creat a new java application, and fill the following parameters:
+1. If you run in Eclipse, just go to "edu.nyu.unik.expriments.kmeansEfficiency", and click the "run configuration", creat a new java application, and fill the following parameters:
 
 ```
 ./dataset/NYC_TAXI_Location_2013_Oct_15004557_6.csv 10 3500455 a NYC  8 9
