@@ -68,7 +68,7 @@ For example, you can download some datasets from UCI (https://archive.ics.uci.ed
 |Europe|http://cs.joensuu.fi/sipu/datasets/europediff.txt|2|
 |KeggDirect|https://archive.ics.uci.edu/ml/datasets/KEGG+Metabolic+Relation+Network+(Directed) |24|
 |KeggUndirect|https://archive.ics.uci.edu/ml/datasets/KEGG+Metabolic+Reaction+Network+(Undirected) |29|
-|NYC-Taxi||2|
+|NYC-Taxi|https://drive.google.com/open?id=1CH_FPB4deDVFm_zDvyya5YMbFBOOz7Bn|2|
 |Skin|https://archive.ics.uci.edu/ml/datasets/skin+segmentation |4|
 |Power|https://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption |9|
 |RoadNetwork|https://archive.ics.uci.edu/ml/datasets/3D+Road+Network+(North+Jutland,+Denmark)|4|
