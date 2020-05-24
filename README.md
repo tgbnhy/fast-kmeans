@@ -39,8 +39,22 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 ## Compared algorithms
 | __Algorithm__ | __Paper__ | __Year__ |
 |-------------|------------|------------|
-| Cat         | Soccer     | Apple      |
-| Dog         | Basketball | Orange     |
+| Lloyd         |   Least squares quantization in PCM   | 1987      |
+|Ball-tree|The Anchors Hierarchy: Using the Triangle Inequality to Survive High Dimensional Data|2000|
+|kd-tree|An efficient k-means clustering algorithm: Analysis and implementation|2002|
+| Elkan         | Using the triangle inequality to accelerate k-means | 2003     |
+|Hamerly|Making k-means even faster|2010|
+|Drake|Accelerated k-means with adaptive distance bounds|2012|
+|Annulus|Faster k-means Clustering (Master thesis)|2013|
+|Search|Scalable K-Means by ranked retrieval|2014|
+|Yinyang|Yinyang K-Means: A Drop-In Replacement of the Classic K-Means
+with Consistent Speedup|2015|
+|Heap|Accelerating Lloyd’s Algorithm for k-Means Clustering|2015|
+|Expo|Fast k-means with accurate bounds|2016|
+|Drift|Geometric methods to accelerate k -means algorithms|2016|
+|Vector|Speeding up k -means by approximating Euclidean distances via block vectors|2016|
+|Regroup|Two Modifications of Yinyang K-means Algorithm|2017|
+|Cover-tree|A Dual-Tree Algorithm for Fast k-means Clustering With Large k|2017|
 
 
 ## Datasets
