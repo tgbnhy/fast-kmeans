@@ -47,8 +47,7 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 |Drake|Accelerated k-means with adaptive distance bounds|2012|
 |Annulus|Faster k-means Clustering (Master thesis)|2013|
 |Search|Scalable K-Means by ranked retrieval|2014|
-|Yinyang|Yinyang K-Means: A Drop-In Replacement of the Classic K-Means
-with Consistent Speedup|2015|
+|Yinyang|Yinyang K-Means: A Drop-In Replacement of the Classic K-Means with Consistent Speedup|2015|
 |Heap|Accelerating Lloyd’s Algorithm for k-Means Clustering|2015|
 |Expo|Fast k-means with accurate bounds|2016|
 |Drift|Geometric methods to accelerate k -means algorithms|2016|
