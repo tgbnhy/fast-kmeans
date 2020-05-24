@@ -60,11 +60,20 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 Any dataset with csv format can be clustered, just need to specify the columns that have numeric values.
 For example, you can download some datasets from UCI (https://archive.ics.uci.edu/ml/datasets.php), and put into the "dataset" folder.
 
-| __Dataset__ | __link__ | __Fruits__ |
+| __Dataset__ | __link__ | __Dimension__ |
 |-------------|------------|------------|
-| Cat         | Soccer     | Apple      |
-| Dog         | Basketball | Orange     |
-
+| BigCross         | https://s3.amazonaws.com/h2o-training/clustering/BigCross.data.gz     | 57      |
+| Conflong         | http://networkrepository.com/ConfLongDemo-JSI.php | 3     |
+|Covtype|https://archive.ics.uci.edu/ml/datasets/covertype|55|
+|Europe|http://cs.joensuu.fi/sipu/datasets/europediff.txt|2|
+|KeggDirect|https://archive.ics.uci.edu/ml/datasets/KEGG+Metabolic+Relation+Network+(Directed) |24|
+|KeggUndirect|https://archive.ics.uci.edu/ml/datasets/KEGG+Metabolic+Reaction+Network+(Undirected) |29|
+|NYC-Taxi||2|
+|Skin|https://archive.ics.uci.edu/ml/datasets/skin+segmentation |4|
+|Power|https://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption |9|
+|RoadNetwork|https://archive.ics.uci.edu/ml/datasets/3D+Road+Network+(North+Jutland,+Denmark)|4|
+|US-Census|https://archive.ics.uci.edu/ml/machine-learning-databases/census1990-mld/ |68|
+|Mnist|http://yann.lecun.com/exdb/mnist/|784|
 
 ## Results Interpretation
 ### Log files
