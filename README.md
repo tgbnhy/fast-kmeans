@@ -37,6 +37,12 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 ## Datasets
 Any dataset with csv format can be clustered, just need to specify the columns that have numeric values.
 For example, you can download some datasets from UCI (https://archive.ics.uci.edu/ml/datasets.php), and put into the "dataset" folder.
+/***
+| __Animals__ | __Sports__ | __Fruits__ |
+|-------------|------------|------------|
+| Cat         | Soccer     | Apple      |
+| Dog         | Basketball | Orange     |
+***/
 
 ## Results Interpretation
 ### Log files
