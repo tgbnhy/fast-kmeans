@@ -1,0 +1,54 @@
+10 10 100
+Centroid is initialized
+The centroids are grouped
+Initialization time: 1.4767E-5, #computations: 1090 pruned nodes: 0
+
+iteration 1, time cost: 0.00032s
+100
+the sum distance after refinement is: 1796869.7562424822
+Initialization time: 1.3639E-5, #computations: 2180 pruned nodes: 0
+
+iteration 2, time cost: 0.00027s
+100
+the sum distance after refinement is: 1075364.9909844748
+Initialization time: 1.3342E-5, #computations: 3270 pruned nodes: 0
+
+iteration 3, time cost: 0.00025s
+100
+the sum distance after refinement is: 969417.5908757236
+Initialization time: 1.298E-5, #computations: 4360 pruned nodes: 0
+
+iteration 4, time cost: 0.00023s
+100
+the sum distance after refinement is: 942806.6021961626
+Initialization time: 2.8583E-5, #computations: 5450 pruned nodes: 0
+
+iteration 5, time cost: 0.00025s
+100
+the sum distance after refinement is: 919967.7264316239
+Initialization time: 1.2529E-5, #computations: 6540 pruned nodes: 0
+
+iteration 6, time cost: 0.00022s
+100
+the sum distance after refinement is: 916046.7532913691
+Initialization time: 1.2507E-5, #computations: 7630 pruned nodes: 0
+
+iteration 7, time cost: 0.00023s
+100
+the sum distance after refinement is: 914569.2671205185
+Initialization time: 1.2731E-5, #computations: 8720 pruned nodes: 0
+
+iteration 8, time cost: 0.00021s
+100
+the sum distance after refinement is: 914264.219129514
+Initialization time: 1.2512E-5, #computations: 9810 pruned nodes: 0
+
+iteration 9, time cost: 0.00023s
+#moved points: 0
+#computation: 9810
+#Pruned nodes: 0
+
+Used memory: 0.00152587890625
+the overall time is 0.00220837s: 0.002097973 1.1039700000000003E-4
+
+100
