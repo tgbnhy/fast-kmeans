@@ -1,5 +1,7 @@
 # Evaluation of Fast k-means
 
+![alt text](UniK.png)
+
 ## Introduction
 This repo holds the source code and scripts for reproduce the key experiments of fast k-means evaluation.
 We also upload an exemplar dataset that you can play with in the folder "dataset".
