@@ -1,6 +1,6 @@
 # Evaluation of Fast k-means
 
-![alt width="100"](UniK.png)
+![alt width="10"](UniK.png)
 
 ## Introduction
 This repo holds the source code and scripts for reproduce the key experiments of fast k-means evaluation.
