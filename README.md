@@ -1,4 +1,4 @@
-# Evaluation of Fast k-means
+# <img src="UniK.png" alt="drawing" width="60"/> Evaluation of Fast k-means
 
 ![alt width="10"](UniK.png)
 
