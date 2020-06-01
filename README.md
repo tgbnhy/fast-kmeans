@@ -26,6 +26,9 @@ arg[6] is the end dimension (column) in the dataset file
 ```
 Then, all the result will be recorded into the log file under the "logs" folder.
 
+You can evaluate the index methods in a similar way, but change to the class: "edu.nyu.unik.expriments.kmeansEfficiencyIndex"
+
+
 2. If you want to run from commands (recommended):
 
 ```
@@ -35,6 +38,9 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 ```
  java -Xmx16192M -cp ./target/torch-clus-0.0.1-SNAPSHOT.jar edu.nyu.unik.expriments.kmeansEfficiency ./dataset/europediff_169300_2.txt 10 169300 a euro 0 1
 ```
+
+## Auto-tuning
+You can open and run our "Utune/utune.ipynb" and observe the precision based on various models.
 
 ## Compared algorithms
 | __Algorithm__ | __Paper__ | __Year__ |
@@ -79,9 +85,11 @@ For example, you can download some datasets from UCI (https://archive.ics.uci.ed
 ### Log files
 In the log file, according to the name, you can go to check multiple metrics we use.
 For example, in "logs/vldb_log1/euro_169300_2_10_BallMetric_30.log", you can see multiple lines.
-In each line, we present multiple methods' corresponding performance.
-The first line shows the overall running time, for the other lines, please check class "kmeansAlgorihtm" line 1667, function writelogs to see the metric if you are intereted in.
-For all the methods we tested, you can check line 2184 function testExisting and line 2272 function testIndex to see the full names.
+In each line, we present multiple sequential methods' corresponding performance.
+The first line shows the overall running time, for the other lines, please check class "kmeansAlgorihtm" function "writelogs" to see the metric if you are intereted in.
+For all the methods we tested, you can check function testExisting and function testIndex to see the full names.
+
+When you evaluate the index methods, you can find newly generated log files: "euro_169300_2_30_index.log" which compares the construction time, and "euro_169300_2_10_30_clustering.log" which compares the clustering time.
 
 ### Terminal
 After you run the command, you will also observe logs from the terminal. It mainly shows the running time of each iteration calling various methods.
