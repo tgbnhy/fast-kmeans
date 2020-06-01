@@ -40,7 +40,7 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 ```
 
 ## Auto-tuning
-You can open and run our "utune/utune.ipynb" and observe the precision based on various ML models.
+You can open and run our "Utune/utune.ipynb" and observe the precision based on various ML models.
 
 ## Compared algorithms
 We compared the following algorithms:
