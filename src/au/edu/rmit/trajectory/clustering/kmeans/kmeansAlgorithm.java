@@ -32,6 +32,7 @@ import au.edu.rmit.trajectory.clustering.kpaths.Util;
 import edu.wlu.cs.levy.cg.KeyDuplicateException;
 import edu.wlu.cs.levy.cg.KeySizeException;
 import java_cup.internal_error;
+import scala.reflect.internal.util.OwnerOnlyChmod;
 
 /*
  * ball-tree, M-tree, and Hierarchical k-means tree can used be extended to answer k-means
@@ -1664,6 +1665,9 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 		}
 	}
 	
+	/*
+	 * write multiple metrics into log files
+	 */
 	void writelogs(int testTime, String indexname, String tab) throws FileNotFoundException {
 		String LOG_DIR = "./logs/vldb_logs1/"+datafilename+"_"+trajectoryNumber+"_"+dimension+"_"+k+"_"+indexname+"_"+capacity+".log";
 		PrintStream fileOut = new PrintStream(LOG_DIR);
@@ -1885,53 +1889,68 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	
 	
 	/*
-	 * we test different index
+	 * we test different index, and run the pure index
 	 */
 	public void experiments_index(int []setK, int testTime) throws IOException, KeySizeException, KeyDuplicateException {
-		
+		String LOG_DIR = "./logs/vldb_logs1/"+datafilename+"_"+trajectoryNumber+"_"+dimension+"_"+capacity+"_index.log";
 	//	plotData.runPlot("");
 		loadDataEuc(datafile, trajectoryNumber);	// load the data and create index
 		indexkmeans = new indexAlgorithm<>();
 		indexNode rootHKT=null, rootMtree=null, rootBall=null, rootCover=null, rootkd = null;
 		
+		String filenameString = "";
 		long startTime1 = System.nanoTime();
 		rootHKT = runIndexbuildQueuePoint(0, capacity, 10);//load the dataset and build one index for all testing methods
 		long endtime = System.nanoTime();	
-		System.out.println("ball-tree Indexing time");
+		System.out.println("HKT Indexing time");
 		System.out.print((endtime-startTime1)/1000000000.0+ ",");
+		Util.rewrite(LOG_DIR, "HKT: "+(endtime-startTime1)/1000000000.0+ "\n");
 		
 		startTime1 = System.nanoTime();
 		rootCover = indexkmeans.buildCoverTree(dimension, dataMatrix);
 		endtime = System.nanoTime();	
 		System.out.println("cover-tree Indexing time");
 		System.out.print((endtime-startTime1)/1000000000.0+ ",");
+		Util.rewrite(LOG_DIR, "Cover: "+(endtime-startTime1)/1000000000.0+ "\n");
+		System.out.println("Cover-tree Indexing space:"+getIndexSize(rootCover)/(1024.0*1024.0));
 		
 		startTime1 = System.nanoTime();
 		rootBall = indexkmeans.buildBalltree2(dataMatrix, dimension, capacity); // capacity
 		endtime = System.nanoTime();	
 		System.out.println("ball-tree Indexing time");
 		System.out.print((endtime-startTime1)/1000000000.0+ ",");
+		Util.rewrite(LOG_DIR, "Ball: "+(endtime-startTime1)/1000000000.0+ "\n");
+		System.out.println("ball-tree Indexing space:"+getIndexSize(rootBall)/(1024.0*1024.0));
+		
+	//	Util.write(LOG_DIR, datafilename+","+dimension+","+trajectoryNumber+", Ball-tree: "
+	//			+getIndexSize(rootBall)/(1024.0*1024.0)+", Cover-tree: "+getIndexSize(rootCover)/(1024.0*1024.0)+"\n");
 		
 		startTime1 = System.nanoTime();
 		indexkmeans.buildKDtree(dimension, dataMatrix);//
 		endtime = System.nanoTime();	
 		System.out.println("kd-tree Indexing time");
 		System.out.print((endtime-startTime1)/1000000000.0+ ",");
+		Util.rewrite(LOG_DIR, "kd: "+(endtime-startTime1)/1000000000.0+ "\n");
 		
 		startTime1 = System.nanoTime();
-	//	rootMtree = indexkmeans.buildMtree(dataMatrix, dimension, capacity); // m-tree too slow.
+		rootMtree = indexkmeans.buildMtree(dataMatrix, dimension, capacity); // m-tree too slow.
 		endtime = System.nanoTime();	
 		System.out.println("m-tree Indexing time");
 		System.out.print((endtime-startTime1)/1000000000.0+ ",");
+		Util.rewrite(LOG_DIR, "M-tree: "+(endtime-startTime1)/1000000000.0+ "\n\n");
+	//	setK = null;//only test construction
 		
 		for(int kvalue: setK) {//test various k
+			LOG_DIR = "./logs/vldb_logs1/"+datafilename+"_"+trajectoryNumber+"_"+dimension+"_"+k+"_"+capacity+"_clustering.log";
+
 			k = kvalue;
 			ArrayList<Pair<indexNode, String>> roots =  new ArrayList<>();
 			roots.add(new ImmutablePair<>(rootHKT, "HKT"));
 			roots.add(new ImmutablePair<>(rootBall, "BallMetric"));
-		//	roots.add(new ImmutablePair<>(rootMtree, "Mtree"));	
+			roots.add(new ImmutablePair<>(rootMtree, "Mtree"));	//too slow
 			roots.add(new ImmutablePair<>(rootCover, "CoverTree"));
 			InitializeAllUnifiedCentroid(kvalue, testTime);//maximum k, time time
+			String content = "";
 			for(Pair<indexNode, String> newroot: roots) { 
 				root = newroot.getLeft();
 				if(root==null)
@@ -1940,7 +1959,8 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 				computeFartherToChild(root);
 				String indexname = newroot.getRight();
 				if(!indexname.equals("HKT"))
-					nonkmeansTree = false;			
+					nonkmeansTree = false;		
+				
 				System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
 				for (int testtime = 0; testtime < testTime; testtime++) {				
 					counter = 0;
@@ -1954,14 +1974,16 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 					endtime = System.nanoTime();	
 					System.out.println(kvalue+","+dimension+","+trajectoryNumber+","+indexname+" time");
 					System.out.print((endtime-startTime1)/1000000000.0+ ",\n");
+					content += indexname + ": " +(endtime-startTime1)/1000000000.0+ "\n";
 				}
 			}
+			Util.rewrite(LOG_DIR, content+"\n");
 		}
 	}
 	
 	
 	/*
-	 * we test different baselines, parameters
+	 * we test different baselines, parameters, 
 	 */
 	public void experiments(int []setK, int testTime) throws IOException, KeySizeException, KeyDuplicateException {
 	//	plotData.runPlot("");
@@ -2042,7 +2064,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 					// our own method, using cascading method, all different 
 					System.out.println(k+" "+testtime+"============================= ends here!");//write into logs for comparison						
 				}
-				/*
+				
 				String aString = generateRank(time, numberofComparison);
 				DecimalFormat dec = new DecimalFormat("#0.0000");
 				double mean = Util.calculateMean(raidus);//
@@ -2065,15 +2087,15 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 				//	Util.write("groundtruth1.csv", aaString);
 					
 					//dataset,k,dimension,trajectoryNumber,height,nodecount,leafnode,depthmean,depthsd,radiusmean,radiussd,pointsmean,pointssd,disfathermean,disfathersd
-					String content = datafilename+","+k+","+dimension+","+trajectoryNumber+","+","+indexkmeans.getHeight(rootBall)/(float)expectedHeight+","+getNodesCount(rootBall)/(trajectoryNumber/(double)capacity)+
+					String content = datafilename+","+k+","+dimension+","+trajectoryNumber+","+indexkmeans.getHeight(rootBall)/(float)expectedHeight+","+getNodesCount(rootBall)/(trajectoryNumber/(double)capacity)+
 							","+dec.format(leafnode)+","+dec.format(depth_mean/expectedHeight)+","+dec.format(depth_sd/expectedHeight)+","
 							+mean+","+Util.calculateSD(raidus, mean)+","+
 							dec.format(coverPointsMean/capacity)+","+dec.format(coverPointsSD/capacity)+","+
 						dec.format(disFatherMean)+","+dec.format(disFatherSD);
-				//	Util.write("groundtruth_3.csv", content+","+aString+"\n");
+					Util.write("groundtruth_rank.csv", content+","+aString+"\n");
 				//	Util.write("groundtruth_align.csv", content+"\n");
 				}
-				*/
+				
 				
 				LloydandSeq = true;
 				if(testTime>0)
@@ -2091,7 +2113,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	//test all
 	
 	/*
-	 * test selective settings
+	 * test selective sequential settings that perform fast 
 	 */
 	double testExistingSelective(int[] best_sign) throws IOException {
 		double min = Double.MAX_VALUE;
@@ -2141,7 +2163,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	}
 	
 	/*
-	 * test four settings: lloyds, yinyang, index and unik
+	 * test four settings: lloyds, yinyang, index and unik, for table 6
 	 */
 	double testUniKSelective(int[] best_sign) throws IOException {
 		double min = Double.MAX_VALUE;
@@ -2179,7 +2201,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	
 	
 	/*
-	 * test existing settings
+	 * test existing settings of sequential methods.
 	 */
 	double testExisting(int[] best_sign) throws IOException {
 		double min = Double.MAX_VALUE;
@@ -2267,7 +2289,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	
 	
 	/*
-	 * 
+	 * test three choice: pure, single traversal, multiple-traversal
 	 */
 	void testIndex(int[] best_config, double min) throws IOException {
 	//	int signBall[] = {0,1,1,0,0,1,0,0,1,0,1,1,0};		
@@ -2295,7 +2317,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	}
 
 	/*
-	 * 
+	 * get the optimal configuration
 	 */
 	double getOptimalConfig(double min, int[] sign, int[] opt) {
 		if (time[counter-1] < min && sign[4] == 0 && sign[7] == 0 && sign[6]==0) {// index cannot use with 4, 6, 7 together
@@ -2326,7 +2348,7 @@ public class kmeansAlgorithm<T> extends KPathsOptimization<T>{
 	}
 	
 	/*
-	 * discover the untested combination
+	 * discover the untested combination, future work
 	 */
 	double testUndiscover(int[] best_sign, double min) throws IOException {
 		System.out.println("Sequential-full optimizations without annu");

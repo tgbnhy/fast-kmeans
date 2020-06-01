@@ -45,6 +45,27 @@ public class Util {
 		}
 	}
 	
+	// write the information into files
+		public static void rewrite(String fileName, String content) {
+			RandomAccessFile randomFile = null;
+			try {
+				randomFile = new RandomAccessFile(fileName, "rws");
+				long fileLength = randomFile.length();
+				randomFile.seek(fileLength);
+				randomFile.writeBytes(content);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (randomFile != null) {
+					try {
+						randomFile.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	
 	/*
 	 * we compute the distance on Euclidean space.
 	 */
