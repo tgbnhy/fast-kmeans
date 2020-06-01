@@ -1,7 +1,7 @@
 # <img src="UniK.png" alt="drawing" width="100"/> Evaluation of Fast k-means
 
 ## Introduction
-This repo holds the source code and scripts for reproduce the key experiments of fast k-means evaluation.
+This repo holds the source code and scripts for reproducing the key experiments of fast k-means evaluation.
 We also upload an exemplar dataset that you can play with in the folder "dataset".
 
 Download our technical report here: https://github.com/tgbnhy/fast-kmeans/blob/master/unik-tr.pdf
@@ -24,9 +24,9 @@ arg[4] is the name of dataset to distinguish
 arg[5] is the start dimension (column) in the dataset file
 arg[6] is the end dimension (column) in the dataset file
 ```
-Then, all the result will be recorded into the log file under the "logs" folder.
+Then, all the results will be recorded into the log files under the "logs" folder.
 
-You can evaluate the index methods in a similar way, but change to the class "edu.nyu.unik.expriments.kmeansEfficiencyIndex", then it will run over the same dataset, but generate different log files.
+You can evaluate the index methods in a similar way, but change to the class "edu.nyu.unik.expriments.kmeansEfficiencyIndex", then it will run over the same dataset, and generate different log files.
 
 
 2. If you want to run from commands (recommended):
@@ -40,9 +40,10 @@ A file "torch-clus-0.0.1-SNAPSHOT.jar" will be generated under folder "target".
 ```
 
 ## Auto-tuning
-You can open and run our "Utune/utune.ipynb" and observe the precision based on various models.
+You can open and run our "utune/utune.ipynb" and observe the precision based on various ML models.
 
 ## Compared algorithms
+We compared the following algorithms:
 | __Algorithm__ | __Paper__ | __Year__ |
 |-------------|------------|------------|
 | Lloyd         |   Least squares quantization in PCM   | 1987      |
