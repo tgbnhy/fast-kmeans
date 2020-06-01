@@ -101,7 +101,7 @@ If you use our code for research work, please cite our paper as below:
 ```
 @article{wang2019unik,
   title={On the Efficiency of {K}-Means Clustering: Evaluation, Optimization, and Algorithm Selection},
-  author={Wang, Sheng and Bao, Zhifeng and Sun, Yuan},
+  author={Wang, Sheng and Sun, Yuan and Bao, Zhifeng},
   year={2020},
 }
 ```
