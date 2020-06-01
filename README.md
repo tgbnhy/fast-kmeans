@@ -26,7 +26,7 @@ arg[6] is the end dimension (column) in the dataset file
 ```
 Then, all the result will be recorded into the log file under the "logs" folder.
 
-You can evaluate the index methods in a similar way, but change to the class: "edu.nyu.unik.expriments.kmeansEfficiencyIndex"
+You can evaluate the index methods in a similar way, but change to the class "edu.nyu.unik.expriments.kmeansEfficiencyIndex", then it will run over the same dataset, but generate different log files.
 
 
 2. If you want to run from commands (recommended):
