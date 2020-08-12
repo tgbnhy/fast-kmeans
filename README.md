@@ -19,7 +19,6 @@ There are six parameters:
 arg[0] is the dataset file that you want to cluster
 arg[1] is the number of clusters (k)
 arg[2] is the number of points in the datafile which will be clustered (|D|)
-arg[3] is the edge info file which contains the street name
 arg[4] is the name of dataset to distinguish
 arg[5] is the start dimension (column) in the dataset file
 arg[6] is the end dimension (column) in the dataset file
