@@ -8,6 +8,9 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
+import org.netlib.util.booleanW;
+import org.netlib.util.doubleW;
+
 import au.edu.rmit.trajectory.clustering.kpaths.Util;
 
 public class cluster{
@@ -269,6 +272,21 @@ public class cluster{
 			}
 			for(int i=0; i<dimension; i++) {
 				nodeSum[i] += data[i];
+			}
+		}
+		return max;
+	}
+	
+	/*
+	 * calculate the radius of each cluster in pami20 paper, add the time
+	 */
+	double pami20_calculate_radius(double[][] datamapEuc, boolean []pami20_flags) {
+		double max = 0;
+		for(int idx: coveredPoints) {
+			double[] data = datamapEuc[idx-1];
+			double dis = Util.EuclideanDis(finalCentroid, data, dimension);
+			if(dis > max) {
+				max = dis;
 			}
 		}
 		return max;

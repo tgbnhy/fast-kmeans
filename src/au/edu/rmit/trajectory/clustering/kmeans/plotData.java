@@ -25,43 +25,57 @@ public class plotData {
 		for (final File fileEntry : folder.listFiles()) {
 	        if (!fileEntry.isDirectory()) {
 	        	String fileName = fileEntry.getName();
-	        	if(fileName.contains(Integer.toString(k)+"_"+indexType)) {
+	        	if(fileName.contains("_"+Integer.toString(k)+"_"+indexType)) {
 	        		if(fileName.contains("Bigcross")) {
 	        			dataCounter = 0;
+	        			System.out.println(readContent(fileEntry, option));
+	        			content[dataCounter] = readContent(fileEntry, option);
+	        		//	System.out.println(fileName);
 	        		}else if(fileName.contains("conf")){
 	        			dataCounter = 1;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("covt")) {
 	        			dataCounter = 2;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("euro")) {
 	        			dataCounter = 3;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("KeggDirect")) {
 	        			dataCounter = 4;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("KeggUndirect")) {
 	        			dataCounter = 5;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("NYC")) {
 	        			dataCounter = 6;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("Skin")) {
 	        			dataCounter = 7;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("power")) {
 	        			dataCounter = 8;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("Spatial")) {
 	        			dataCounter = 9;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}else if(fileName.contains("USCensus")) {
 	        			dataCounter = 10;
+	        			content[dataCounter] = readContent(fileEntry, option);
 	        		}
-	        		content[dataCounter] = readContent(fileEntry, option);
-	        		
+	        	//	content[dataCounter] = readContent(fileEntry, option);
 	        	}	        	
-	            System.out.println(fileEntry.getName());
+	         //   System.out.println(fileEntry.getName());
 	        }
 	    }
+		System.out.println(content[0]);
+		System.out.println();
 		for(int i = 1;  i<=datasetnum; i++)
 			Util.write(folderName+"/plot/"+output, Integer.toString(i)+ "\t"+ content[i-1]+"\n");
 	}
 	
     //read the lines
     public static String readContent(File file, int lineCountre) throws IOException{
-        System.out.println("read file " + file.getCanonicalPath() );
+    //    System.out.println("read file " + file.getCanonicalPath() );
         String content = "";
         try(BufferedReader br  = new BufferedReader(new FileReader(file))){
               String strLine;
@@ -73,12 +87,13 @@ public class plotData {
             	  }
               }
         }
+    //    System.out.println(content);
         return content;
     }
     
     //read the specific column in lines
     public static String readContent(File file, int lineCountre, int start, int end) throws IOException{
-        System.out.println("read file " + file.getCanonicalPath() );
+    //    System.out.println("read file " + file.getCanonicalPath() );
         String content = "";
         try(BufferedReader br  = new BufferedReader(new FileReader(file))){
               String strLine;
@@ -279,7 +294,7 @@ public class plotData {
  	// 12: boundCompares, 14: dataAccess, 16: boundUpdates, 18: memoryUsage
  	//read existing files and store the data in a folder, then add the new ran data to update the score.
     public static void main(String[] args) throws IOException, KeySizeException, KeyDuplicateException {
-		for (int kvalue = 10; kvalue <= 1000; kvalue = kvalue * 10) {
+		for (int kvalue = 10; kvalue <= 100; kvalue = kvalue * 10) {
 			savePlotDataFile(args[0], 0, kvalue, "Ball", "runingtime" +Integer.valueOf(kvalue)+ ".txt");
 			savePlotDataFile(args[0], 1, kvalue, "Ball", "runingtimeratio" + Integer.valueOf(kvalue)+".txt");
 			savePlotDataFile(args[0], 3, kvalue, "Ball", "assigntime" +Integer.valueOf(kvalue)+ ".txt");
@@ -294,6 +309,7 @@ public class plotData {
 			savePlotDataFile(args[0], 18, kvalue, "Ball", "memoryUsage" + Integer.valueOf(kvalue)+".txt");
 		}
 		
+		/*
 		extractk(args[0], "road", 1);
 		
 		extractDataScale(args[0], "NYC", 0, 100);
@@ -303,6 +319,7 @@ public class plotData {
 		extrackIndexCapacity(args[0], "NYC", 0, 10);// get the running time, all the index method.
 		
 		extracDimension(args[0], "covt", 0, 10);// get the running time, all the index method.
-		extracDimension(args[0], "bigcross", 0, 10);// get the running time, all the index method.		
+		extracDimension(args[0], "bigcross", 0, 10);// get the running time, all the index method.	
+		*/	
     }
 }

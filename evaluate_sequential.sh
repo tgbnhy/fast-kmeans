@@ -1,0 +1,1 @@
+java -Xmx16192M -cp ./target/torch-clus-0.0.1-SNAPSHOT.jar edu.nyu.unik.expriments.kmeansEfficiency ./dataset/europediff_169300_2.txt 10 169300 a euro 0 1
