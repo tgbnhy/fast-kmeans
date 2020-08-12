@@ -60,6 +60,7 @@ We compared the following algorithms:
 |Vector|Speeding up k -means by approximating Euclidean distances via block vectors|2016|
 |Regroup|Two Modifications of Yinyang K-means Algorithm|2017|
 |Cover-tree|A Dual-Tree Algorithm for Fast k-means Clustering With Large k|2017|
+|Pami20|A Fast Adaptive k-means with No Bounds|2020|
 
 
 ## Datasets
